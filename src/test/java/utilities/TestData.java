@@ -1,6 +1,14 @@
 package utilities;
 
 public class TestData {
+    public static final String loginFormLabelText = "Login Form";
+    public static final String usernameLabelText = "Please enter your username";
+    public static final String passwordLabelText = "Please enter your password";
+    public static final String loginButtonText = "LOGIN";
+    public static final String forgotPasswordText = "Forgot Password?";
+
+
+
 
     public static final String validUsername = "TechGlobal";
     public static final String validPassword = "Test1234";

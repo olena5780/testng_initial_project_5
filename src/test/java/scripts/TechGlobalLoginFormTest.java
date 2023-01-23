@@ -8,17 +8,7 @@ import pages.TechGlobalLoginFormPage;
 import utilities.TestData;
 
 public class TechGlobalLoginFormTest extends TechGlobalBase{
-        /*
-    Given user is on https://techglobal-training.netlify.app/
-When user clicks on "Practices" dropdown in the header
-And user select the "Frontend Testing" option
-And user clicks on the "Login Form" card
-Then user should heading1 as “Login Form”
-And user should see “Please enter your username” label and username input box
-And user should see “Please enter your password” label and password input box
-And user should see “LOGIN” button
-And user should see “Forgot Password?” link
-     */
+
         @BeforeMethod
         public void setPage(){
             techGlobalFrontendTestingHomePage = new TechGlobalFrontendTestingHomePage();
@@ -28,6 +18,43 @@ And user should see “Forgot Password?” link
             techGlobalFrontendTestingHomePage.clickOnCard("Login Form");
         }
 
+        /*
+        Test Case 1: Validate TechGlobal Login Form card
+       Given user is on https://techglobal-training.netlify.app/
+       When user clicks on "Practices" dropdown in the header
+       And user select the "Frontend Testing" option
+       And user clicks on the "Login Form" card
+       Then user should heading1 as “Login Form”
+       And user should see “Please enter your username” label and username input box
+       And user should see “Please enter your password” label and password input box
+       And user should see “LOGIN” button
+       And user should see “Forgot Password?” link
+        */
+        @Test(priority = 1, description = "Validate Login Form heading1")
+    public void validateTechGlobalLoginFormCard(){
+        //Validate Login Form heading1
+        Assert.assertTrue(techGlobalLoginFormPage.loginForm.isDisplayed());
+        Assert.assertEquals(techGlobalLoginFormPage.loginForm.getText(), TestData.loginFormLabelText);
+        //Validate user should see “Please enter your username” label and username input box
+        Assert.assertTrue(techGlobalLoginFormPage.usernameLabel.isDisplayed());
+        Assert.assertEquals(techGlobalLoginFormPage.usernameLabel.getText(), TestData.usernameLabelText);
+        Assert.assertTrue(techGlobalLoginFormPage.usernameInput.isDisplayed());
+        //Validate user should see “Please enter your password” label and username input box
+        Assert.assertTrue(techGlobalLoginFormPage.passwordLabel.isDisplayed());
+        Assert.assertEquals(techGlobalLoginFormPage.passwordLabel.getText(), TestData.passwordLabelText);
+        Assert.assertTrue(techGlobalLoginFormPage.passwordInput.isDisplayed());
+        //Validate user should see “LOGIN” button
+        Assert.assertTrue(techGlobalLoginFormPage.loginButton.isDisplayed());
+        Assert.assertTrue(techGlobalLoginFormPage.loginButton.isEnabled());
+        Assert.assertEquals(techGlobalLoginFormPage.loginButton.getText(), TestData.loginButtonText);
+        //Validate user should see “Forgot Password?” link
+        Assert.assertTrue(techGlobalLoginFormPage.forgotPassword.isDisplayed());
+        Assert.assertTrue(techGlobalLoginFormPage.forgotPassword.isEnabled());
+        Assert.assertEquals(techGlobalLoginFormPage.forgotPassword.getText(), TestData.forgotPasswordText);
+    }
+
+
+/*
         @Test(priority = 1, description = "Validate Login Form heading1")
         public void validateLoginForm(){
             Assert.assertTrue(techGlobalLoginFormPage.loginForm.isDisplayed());
@@ -56,19 +83,21 @@ And user should see “Forgot Password?” link
             Assert.assertTrue(techGlobalLoginFormPage.forgotPassword.isDisplayed());
             Assert.assertTrue(techGlobalLoginFormPage.forgotPassword.isEnabled());
         }
+
+ */
         /*
-        Test Case 2: Validate TechGlobal Login Form card valid login
-Given user is on https://techglobal-training.netlify.app/
-When user clicks on "Practices" dropdown in the header
-And user select the "Frontend Testing" option
-And user clicks on the "Login Form" card
-And user enters username as “TechGlobal” and password as “Test1234”
-And user clicks on “LOGIN” button
-Then user should see “You are logged in” message
-And user should see “LOGOUT” button
+       Test Case 2: Validate TechGlobal Login Form card valid login
+       Given user is on https://techglobal-training.netlify.app/
+       When user clicks on "Practices" dropdown in the header
+       And user select the "Frontend Testing" option
+       And user clicks on the "Login Form" card
+       And user enters username as “TechGlobal” and password as “Test1234”
+       And user clicks on “LOGIN” button
+       Then user should see “You are logged in” message
+       And user should see “LOGOUT” button
          */
 
-    @Test(priority = 6, description = "Validate TechGlobal Login Form card valid login")
+    @Test(priority = 2, description = "Validate TechGlobal Login Form card with valid login")
     public void validateLoginWithCorrectCredentials(){
         techGlobalLoginFormPage.usernameInput.sendKeys(TestData.validUsername);
         techGlobalLoginFormPage.passwordInput.sendKeys(TestData.validPassword);
@@ -94,7 +123,7 @@ And user should see “LOGOUT” button
     Then user should be navigated back to Login Form
      */
 
-    @Test (priority = 7, description = "Validate TechGlobal Login Form card valid login and then logout")
+    @Test (priority = 3, description = "Validate TechGlobal Login Form card valid login and then logout")
 
     public void validateLoginAndLogoutWithValidCredentials(){
         techGlobalLoginFormPage.usernameInput.sendKeys(TestData.validUsername);
@@ -107,19 +136,19 @@ And user should see “LOGOUT” button
 
     }
     /*
-    Test Case 4: Validate TechGlobal Login Form card Forgot Password? Link and Reset Password page
-Given user is on https://techglobal-training.netlify.app/
-When user clicks on "Practices" dropdown in the header
-And user select the "Frontend Testing" option
-And user clicks on the "Login Form" card
-And user clicks on “Forgot Password?” link
-Then user should see “Reset Password” heading1
-And user should see “Enter your email address and we'll send you a link to reset your password.” message
-And user should see email input box
-And user should see “SUBMIT” button
+         Test Case 4: Validate TechGlobal Login Form card Forgot Password? Link and Reset Password page
+     Given user is on https://techglobal-training.netlify.app/
+     When user clicks on "Practices" dropdown in the header
+     And user select the "Frontend Testing" option
+     And user clicks on the "Login Form" card
+     And user clicks on “Forgot Password?” link
+     Then user should see “Reset Password” heading1
+     And user should see “Enter your email address and we'll send you a link to reset your password.” message
+     And user should see email input box
+     And user should see “SUBMIT” button
      */
 
-    @Test(priority = 8, description = "Validate TechGlobal Login Form card Forgot Password? Link and Reset Password page")
+    @Test(priority = 4, description = "Validate TechGlobal Login Form card Forgot Password? Link and Reset Password page")
     public void validateForgotPasswordLink(){
         techGlobalLoginFormPage.forgotPassword.click();
         Assert.assertTrue(techGlobalLoginFormPage.resetPasswordLabel.isDisplayed());
@@ -140,7 +169,7 @@ When user enters a valid email to email input box
 And user clicks on “SUBMIT” button
 Then user should see “A link to reset your password has been sent to your email address.” message
      */
-    @Test(priority = 9, description = "Validate TechGlobal Login Form card Reset Password link")
+    @Test(priority = 5, description = "Validate TechGlobal Login Form card Reset Password link")
     public void validateLinkToResetPasswordHasBeenSentToEmail(){
         techGlobalLoginFormPage.forgotPassword.click();
         techGlobalLoginFormPage.resetPasswordInput.sendKeys(TestData.validEmail);
@@ -158,7 +187,7 @@ And user enters username as “john” and password as “Test1234”
 And user clicks on “LOGIN” button
 Then user should see “Invalid Username entered!” message
      */
-    @Test(priority = 10, description = "Validate TechGlobal Login Form card invalid login with wrong username")
+    @Test(priority = 6, description = "Validate TechGlobal Login Form card invalid login with wrong username")
     public void validateLoginWithInvalidUsername(){
         techGlobalLoginFormPage.usernameInput.sendKeys(TestData.invalidUsername);
         techGlobalLoginFormPage.passwordInput.sendKeys(TestData.validPassword);
@@ -176,7 +205,7 @@ Then user should see “Invalid Username entered!” message
     And user clicks on “LOGIN” button
     Then user should see “Invalid Password entered!” message
      */
-    @Test(priority = 11, description = "Validate TechGlobal Login Form card invalid login with wrong password")
+    @Test(priority = 7, description = "Validate TechGlobal Login Form card invalid login with wrong password")
     public void validateLoginWithInvalidPassword(){
         techGlobalLoginFormPage.usernameInput.sendKeys(TestData.validUsername);
         techGlobalLoginFormPage.passwordInput.sendKeys(TestData.invalidPassword);
@@ -195,7 +224,7 @@ Then user should see “Invalid Username entered!” message
      Then user should see “Invalid Username entered!” message
           */
 
-    @Test(priority = 12, description = "Validate TechGlobal Login Form card invalid login with wrong password")
+    @Test(priority = 8, description = "Validate TechGlobal Login Form card invalid login with wrong password")
     public void validateLoginWithBothInvalidCredentials(){
         techGlobalLoginFormPage.usernameInput.sendKeys(TestData.invalidUsername);
         techGlobalLoginFormPage.passwordInput.sendKeys(TestData.invalidPassword);
